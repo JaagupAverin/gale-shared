@@ -1,0 +1,3 @@
+export BOARD=nrf54l15bsim/nrf54l15/cpuapp
+export BSIM_OUT_PATH=${ZEPHYR_BASE}/../tools/bsim
+export BSIM_COMPONENTS_PATH=${BSIM_OUT_PATH}/components/
