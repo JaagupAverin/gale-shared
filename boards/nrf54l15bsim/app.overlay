@@ -2,7 +2,6 @@
     chosen {
         zephyr,console = &uart_pty_0;
         zephyr,shell-uart = &uart_pty_0;
-        zephyr,bt-c2h-uart = &uart_pty_0;
     };
 
     uart_pty_0: uart_pty_0 {
@@ -34,5 +33,7 @@
         }; /* rram_controller */
 
     }; /* soc */
+
+    #include "../nrf54l15_fstab.dtsi"
 
 }; /* root */
