@@ -1,39 +1,18 @@
 / {
     chosen {
-        zephyr,console = &uart_pty_0;
-        zephyr,shell-uart = &uart_pty_0;
-    };
-
-    uart_pty_0: uart_pty_0 {
-        compatible = "zephyr,native-pty-uart";
-        status = "okay";
+        /delete-property/ zephyr,console;
+        zephyr,shell-uart = &uart20;
     };
 
     soc {
-        /* Delete default HW model for RRAM: even though its a nice and more realistic implementation,
-           it does not support actually persistent storage (i.e on the host machine) so we shall redefine it
-           with the zephyr,sim-flash instead: */
-        /delete-node/ rram-controller@5004b000;
-        rram_controller: sim_flash_controller@0 {
-            compatible = "zephyr,sim-flash";
-            reg = <0x00000000 0x1000>;
-            erase-value = <0xff>;
-            #address-cells = <1>;
-            #size-cells = <1>;
-
-            cpuapp_rram: flash@0 {
-                compatible = "soc-nv-flash";
-                reg = <0x0 DT_SIZE_K(1428)>;
-                erase-block-size = <4096>;
-                write-block-size = <16>;
-
-                #include "../nrf54l15_partitions.dtsi"
-            };
-
-        }; /* rram_controller */
 
     }; /* soc */
 
     #include "../nrf54l15_fstab.dtsi"
 
 }; /* root */
+
+&cpuapp_rram {
+    /delete-node/ partitions;
+    #include "../nrf54l15_partitions.dtsi"
+};
