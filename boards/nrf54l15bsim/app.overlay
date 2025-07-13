@@ -4,6 +4,10 @@
         zephyr,shell-uart = &uart20;
     };
 
+     zephyr,user {
+        led-gpios = <&gpio2 9 GPIO_ACTIVE_HIGH>;
+     };
+
     soc {
 
     }; /* soc */
@@ -15,4 +19,8 @@
 &cpuapp_rram {
     /delete-node/ partitions;
     #include "../nrf54l15_partitions.dtsi"
+};
+
+&gpio2 {
+    status = "okay";
 };
