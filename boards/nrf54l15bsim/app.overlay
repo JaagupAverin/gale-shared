@@ -4,15 +4,24 @@
         zephyr,shell-uart = &uart20;
     };
 
-     zephyr,user {
+    zephyr,user {
         led-gpios = <&gpio2 9 GPIO_ACTIVE_HIGH>;
-     };
+    };
 
     soc {
 
     }; /* soc */
 
     #include "../nrf54l15_fstab.dtsi"
+
+    i2c0: i2c@0 {
+        status = "okay";
+        compatible = "zephyr,i2c-emul-controller";
+        clock-frequency = <I2C_BITRATE_STANDARD>;
+        #address-cells = <1>;
+        #size-cells = <0>;
+        reg = <0x0 4>;
+    };
 
 }; /* root */
 
