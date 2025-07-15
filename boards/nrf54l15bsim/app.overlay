@@ -21,6 +21,13 @@
         #address-cells = <1>;
         #size-cells = <0>;
         reg = <0x0 4>;
+
+        /* Simulated device; will talk to projects/zephyr/drivers/fuel_gauge/sbs_gauge/emul_sbs_gauge.c */
+        fuel_gauge: fuel_gauge@0 {
+            compatible = "sbs,sbs-gauge-new-api";
+            status = "okay";
+            reg = <0x0>;
+        };
     };
 
 }; /* root */
