@@ -1,6 +1,8 @@
 / {
     chosen {
+        // We use shell's backend for logging, so disable the console backend
         /delete-property/ zephyr,console;
+
         zephyr,shell-uart = &uart20;
     };
 
