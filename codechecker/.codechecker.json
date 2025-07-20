@@ -1,0 +1,8 @@
+{
+  "analyze": [
+    "--quiet",
+    "--analyzer-config=clang-tidy:take-config-from-directory=true",
+    "--enable=gcc",
+    "--disable=cppcheck"
+  ]
+}
