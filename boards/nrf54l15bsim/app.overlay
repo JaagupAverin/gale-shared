@@ -4,6 +4,7 @@
         /delete-property/ zephyr,console;
 
         zephyr,shell-uart = &uart20;
+        zephyr,gdbstub-uart = &uart30;
     };
 
     zephyr,user {
@@ -42,5 +43,9 @@
 };
 
 &gpio2 {
+    status = "okay";
+};
+
+&uart30 {
     status = "okay";
 };
