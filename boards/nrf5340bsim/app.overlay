@@ -3,11 +3,11 @@
         // We use shell's backend for logging, so disable the console backend
         /delete-property/ zephyr,console;
 
-        zephyr,shell-uart = &uart20;
+        zephyr,shell-uart = &uart0;
     };
 
     zephyr,user {
-        led-gpios = <&gpio2 9 GPIO_ACTIVE_HIGH>;
+        led-gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
     };
 
     soc {
@@ -35,12 +35,3 @@
     };
 
 }; /* root */
-
-&cpuapp_rram {
-    /delete-node/ partitions;
-    #include "../nrf54l15_partitions.dtsi"
-};
-
-&gpio2 {
-    status = "okay";
-};

@@ -1,0 +1,10 @@
+export BOARD=nrf5340bsim/nrf5340/cpuapp
+
+export SHARED_DIR=${ZEPHYR_BASE}/../shared
+
+export EXTRA_DTC_OVERLAY_FILE=${SHARED_DIR}/boards/nrf5340bsim/app.overlay
+export EXTRA_CONF_FILE=${SHARED_DIR}/boards/nrf5340bsim/app.conf
+export SB_CONF_FILE=${SHARED_DIR}/boards/nrf5340bsim/sysbuild.conf
+
+export BSIM_OUT_PATH=${ZEPHYR_BASE}/../tools/bsim
+export BSIM_COMPONENTS_PATH=${BSIM_OUT_PATH}/components/
