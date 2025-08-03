@@ -1,0 +1,4 @@
+name: shared
+build:
+  sysbuild-cmake: ../radio
+  sysbuild-kconfig: ../radio/Kconfig
