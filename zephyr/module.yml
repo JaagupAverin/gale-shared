@@ -1,4 +1,4 @@
 name: shared
 build:
-  sysbuild-cmake: ../radio
-  sysbuild-kconfig: ../radio/Kconfig
+  sysbuild-cmake: net_app
+  sysbuild-kconfig: net_app/Kconfig.sysbuild

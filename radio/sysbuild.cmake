@@ -1,6 +1,0 @@
-if(SB_CONFIG_RADIO_APP_NAME)
-  ExternalZephyrProject_Add(
-    APPLICATION ${SB_CONFIG_RADIO_APP_NAME}
-    SOURCE_DIR ${SB_CONFIG_RADIO_APP_NAME}
-  )
-endif()
