@@ -1,8 +1,0 @@
-
-if (SB_CONFIG_NET_APP_NAME)
-    ExternalZephyrProject_Add(
-        APPLICATION ${SB_CONFIG_NET_APP_NAME}
-        SOURCE_DIR ${SYSBUILD_CURRENT_CMAKE_DIR}/${SB_CONFIG_NET_APP_NAME}
-        BOARD ${SB_CONFIG_NET_CORE_BOARD}
-    )
-endif()

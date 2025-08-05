@@ -1,4 +1,7 @@
 name: shared
 build:
-  sysbuild-cmake: net_app
-  sysbuild-kconfig: net_app/Kconfig.sysbuild
+  cmake: ./zephyr
+  sysbuild-cmake: ./sysbuild
+  sysbuild-kconfig: ./sysbuild/Kconfig
+  settings:
+    dts_root: .

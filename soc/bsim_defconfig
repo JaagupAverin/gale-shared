@@ -1,3 +1,5 @@
+# This file contains common settings for all BabbleSim boards, enabling extra debugging and analysis features.
+
 # Disable the outputting logs to the default executable terminal
 CONFIG_LOG_BACKEND_NATIVE_POSIX=n
 

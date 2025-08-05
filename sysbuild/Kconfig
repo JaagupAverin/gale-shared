@@ -1,0 +1,35 @@
+choice NET_APP
+	prompt "Build Network Application"
+	default NET_APP_NONE
+
+config NET_APP_NONE
+	bool "Build No Network Application."
+	help
+		Do not build any Network Application.
+
+config NET_APP_BRIDGE
+	bool "Build Network Bridge Application."
+	help
+		Build the Network Bridge Application for the network core.
+
+config NET_APP_RELAY
+	bool "Build Network Relay Application."
+	help
+		Build the Network Relay Application for the network core.
+
+endchoice
+
+if !NET_APP_NONE
+
+config NET_APP_NAME
+	string
+	default "net_app_bridge" if NET_APP_BRIDGE
+	default "net_app_relay" if NET_APP_RELAY
+	help
+		Network application name.
+
+config NET_CORE_BOARD
+string
+	default "nrf5340bsim/nrf5340/cpunet" if $(BOARD_TARGET_STRING) = "NRF5340BSIM_NRF5340_CPUAPP"
+
+endif # NET_APP_NONE
