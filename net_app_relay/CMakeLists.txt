@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # =============================================================================
 target_sources(app PRIVATE
   src/main.cpp
+  src/tests/multicore.cpp
 )
 
 target_include_directories(app PRIVATE include)

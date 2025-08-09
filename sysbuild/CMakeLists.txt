@@ -10,8 +10,12 @@ if(SB_CONFIG_NET_APP_NAME)
 endif()
 
 # These only affect the native_sim build, otherwise not important:
+# (With native_sim both applications are built into the same final executable)
 native_simulator_set_child_images(${DEFAULT_IMAGE} ${SB_CONFIG_NET_APP_NAME})
 native_simulator_set_final_executable(${DEFAULT_IMAGE})
+
+# Build the network application first:
+add_dependencies(${DEFAULT_IMAGE} ${SB_CONFIG_NET_APP_NAME})
 
 message(
 "Added network application to the build:
@@ -35,17 +39,19 @@ function(add_shared_overlays_and_confs)
   set(dotconf)
 
   if(ARG_BOARD STREQUAL "nrf5340bsim/nrf5340/cpuapp")
-    set(overlay ${SYSBUILD_CURRENT_MODULE_DIR}/boards/nrf5340bsim_nrf5340_cpuapp.overlay)
-    set(dotconf ${SYSBUILD_CURRENT_MODULE_DIR}/boards/bsim.conf)
+    list(APPEND overlay ${SYSBUILD_CURRENT_MODULE_DIR}/boards/nrf5340bsim_nrf5340_cpuapp.overlay)
+    list(APPEND dotconf ${SYSBUILD_CURRENT_MODULE_DIR}/soc/bsim.conf)
   elseif(ARG_BOARD STREQUAL "nrf54l15bsim/nrf54l15/cpuapp")
-    set(overlay ${SYSBUILD_CURRENT_MODULE_DIR}/boards/nrf54l15bsim_nrf54l15_cpuapp.overlay)
-    set(dotconf ${SYSBUILD_CURRENT_MODULE_DIR}/boards/bsim.conf)
+    list(APPEND overlay ${SYSBUILD_CURRENT_MODULE_DIR}/boards/nrf54l15bsim_nrf54l15_cpuapp.overlay)
+    list(APPEND dotconf ${SYSBUILD_CURRENT_MODULE_DIR}/soc/bsim.conf)
   elseif(ARG_BOARD STREQUAL "nrf5340bsim/nrf5340/cpunet")
-    set(overlay ${SYSBUILD_CURRENT_MODULE_DIR}/boards/nrf5340bsim_nrf5340_cpunet.overlay)
-    set(dotconf ${SYSBUILD_CURRENT_MODULE_DIR}/boards/bsim.conf)
+    list(APPEND overlay ${SYSBUILD_CURRENT_MODULE_DIR}/boards/nrf5340bsim_nrf5340_cpunet.overlay)
+    list(APPEND dotconf ${SYSBUILD_CURRENT_MODULE_DIR}/soc/bsim.conf)
   else()
     message(FATAL_ERROR "Unrecognized board: ${ARG_BOARD}")
   endif()
+
+  list(APPEND dotconf ${SYSBUILD_CURRENT_MODULE_DIR}/soc/global.conf)
 
   set(${ARG_APP}_EXTRA_DTC_OVERLAY_FILE ${overlay} CACHE INTERNAL "")
   set(${ARG_APP}_EXTRA_CONF_FILE        ${dotconf} CACHE INTERNAL "")
@@ -59,6 +65,3 @@ endfunction()
 
 add_shared_overlays_and_confs(APP ${DEFAULT_IMAGE}          BOARD ${CACHED_BOARD})
 add_shared_overlays_and_confs(APP ${SB_CONFIG_NET_APP_NAME} BOARD ${SB_CONFIG_NET_APP_BOARD})
-
-# TODO: JUST GOT BOTH CORES RUNNING, BUT NET CORE IS SILENT;
-# some conf still bad or have to jumpstart the core in main app code?

@@ -1,11 +1,14 @@
-#include <app_version.h>
 #include <zephyr/kernel.h>
+
+#include "tests/multicore.hpp"
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 
 int main() {
-	LOG_INF("Hello, world?! " APP_VERSION_STRING);
+	LOG_INF("Hello, world!");
+
+	test_multicore();
 
 	int i = 0;
 	while (true) {
