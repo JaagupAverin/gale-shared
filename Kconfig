@@ -1,0 +1,5 @@
+menu "Gale shared libraries"
+
+rsource "ipc/Kconfig"
+
+endmenu

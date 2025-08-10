@@ -1,6 +1,7 @@
 name: shared
 build:
-  cmake: ./zephyr
+  cmake: ./
+  kconfig: ./Kconfig
   sysbuild-cmake: ./sysbuild
   sysbuild-kconfig: ./sysbuild/Kconfig
   settings:

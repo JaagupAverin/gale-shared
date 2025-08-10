@@ -1,0 +1,5 @@
+
+config GALE_IPC
+	bool "Gale Inter Processor Communication library"
+	help
+		Enable Gale Inter Processor Communication library
